@@ -48,6 +48,8 @@ async function attachPullRequestToCard(card, link) {
 async function moveCardToList(card) {
   console.log(`moveCardToList(${card})`);
   let listId = await getListOnBoard();
+
+  console.log(`List: { id: ${listId}, name: ${trelloListName} })`);
   if (listId && listId.length > 0) {
     let url = `https://api.trello.com/1/cards/${card}`;
     return await axios.put(url, {
@@ -181,7 +183,8 @@ async function handlePullRequest(data) {
     }
 
     if (trelloCardAction.toLowerCase() == 'pr merged') {
-      if (data.merged === true) {
+      console.log(`is PR merged? ${data.merged}`)
+      if (data.merged) {
         return await moveCardToList(card);
       }
     }
