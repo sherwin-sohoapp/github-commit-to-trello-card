@@ -8526,7 +8526,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.1","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test && bundlesize","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://github.com/axios/axios","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.10.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.1","/Users/soholaptop/Projects/github-commit-to-trello-card"]],"_from":"axios@0.21.1","_id":"axios@0.21.1","_inBundle":false,"_integrity":"sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.1","name":"axios","escapedName":"axios","rawSpec":"0.21.1","saveSpec":null,"fetchSpec":"0.21.1"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.1.tgz","_spec":"0.21.1","_where":"/Users/soholaptop/Projects/github-commit-to-trello-card","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.1"}');
 
 /***/ }),
 
@@ -8733,25 +8733,137 @@ const trelloApiKey = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello
 const trelloAuthToken = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-auth-token', { required: true });
 const trelloBoardId = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-board-id', { required: true });
 const trelloCardAction = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-card-action', { required: true });
-const trelloListNameCommit = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-list-name-commit', { required: true });
-const trelloListNamePullRequestOpen = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-list-name-pr-open', { required: false });
-const trelloListNamePullRequestClosed = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-list-name-pr-closed', { required: false });
+// const trelloListNameCommit = core.getInput('trello-list-name-commit', { required: true });
+// const trelloListNamePullRequestOpen = core.getInput('trello-list-name-pr-open', { required: false });
+// const trelloListNamePullRequestClosed = core.getInput('trello-list-name-pr-closed', { required: false });
 
+// async function getListOnBoard(board, list) {
+//   console.log(`getListOnBoard(${board}, ${list})`);
+//   let url = `https://trello.com/1/boards/${board}/lists`
+//   return await axios.get(url, {
+//     params: {
+//       key: trelloApiKey,
+//       token: trelloAuthToken
+//     }
+//   }).then(response => {
+//     let result = response.data.find(l => l.closed == false && l.name == list);
+//     return result ? result.id : null;
+//   }).catch(error => {
+//     console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+//     return null;
+//   });
+// }
+
+async function isPullRequestAttachedToCard(card, link) {
+  console.log(`isPullRequestAttachedToCard(${card}, ${link})`);
+  let url = `https://api.trello.com/1/cards/${card}/attachments`;
+
+  return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, {
+    params: {
+      key: trelloApiKey,
+      token: trelloAuthToken
+    }
+  }).then(response => {
+    return response.data.findIndex(v => v.url === link) == -1;
+  }).catch(error => {
+    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+    return null;
+  });
+}
+
+async function attachPullRequestToCard(card, link) {
+  console.log(`attachPullRequestToCard(${card}, ${link})`);
+  let url = `https://api.trello.com/1/cards/${card}/attachments`;
+
+  return await axios__WEBPACK_IMPORTED_MODULE_0__.post(url, {
+    key: trelloApiKey,
+    token: trelloAuthToken,
+    url: link
+  }).then(response => {
+    return response.status == 200;
+  }).catch(error => {
+    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+    return null;
+  });
+}
+
+// async function addCommentToCard(card, user, message, link) {
+//   console.log(`addCommentToCard(${card}, ${user}, ${message}, ${link})`);
+//   let url = `https://api.trello.com/1/cards/${card}/actions/comments`;
+//   return await axios.post(url, {
+//     key: trelloApiKey,
+//     token: trelloAuthToken,
+//     text: `${user}: ${message} ${link}`
+//   }).then(response => {
+//     return response.status == 200;
+//   }).catch(error => {
+//     console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+//     return null;
+//   });
+// }
+
+// async function moveCardToList(board, card, list) {
+//   console.log(`moveCardToList(${board}, ${card}, ${list})`);
+//   let listId = await getListOnBoard(board, list);
+//   if (listId && listId.length > 0) {
+//     let url = `https://api.trello.com/1/cards/${card}`;
+//     return await axios.put(url, {
+//       key: trelloApiKey,
+//       token: trelloAuthToken,
+//       idList: listId
+//     }).then(response => {
+//       return response && response.status == 200;
+//     }).catch(error => {
+//       console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+//       return null;
+//     });
+//   }
+//   return null;
+// }
+
+// async function handleHeadCommit(data) {
+//   console.log("handleHeadCommit", data);
+//   let url = data.url;
+//   let message = data.message;
+//   let user = data.author.name;
+//   let card = await getCardOnBoard(trelloBoardId, message);
+//   if (card && card.length > 0) {
+//     if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment') {
+//       await addAttachmentToCard(card, url);
+//     }
+//     else if (trelloCardAction && trelloCardAction.toLowerCase() == 'comment') {
+//       await addCommentToCard(card, user, message, url);
+//     }
+//     if (message.match(regexPullRequest) && trelloListNamePullRequestClosed && trelloListNamePullRequestClosed.length > 0) {
+//       await moveCardToList(trelloBoardId, card, trelloListNamePullRequestClosed);
+//     }
+//     else if (trelloListNameCommit && trelloListNameCommit.length > 0) {
+//       await moveCardToList(trelloBoardId, card, trelloListNameCommit);
+//     }
+//   }
+// }
+
+// ESSENTIAL METHODS
+// parses the card number from the message
 function getCardNumber(message) {
   console.log(`getCardNumber(${message})`);
   let ids = message && message.length > 0 ? message.replace(regexPullRequest, "").match(/\#\d+/g) : [];
-  return ids && ids.length > 0 ? ids[ids.length-1].replace('#', '') : null;
+  return ids && ids.length > 0 ? ids[ids.length - 1].replace('#', '') : null;
 }
 
+// fetches the card on the board
+// shortID is not the same as the card number used in the API
+// it requires fetching the card number
 async function getCardOnBoard(board, message) {
   console.log(`getCardOnBoard(${board}, ${message})`);
   let card = getCardNumber(message);
+
   if (card && card.length > 0) {
     let url = `https://trello.com/1/boards/${board}/cards/${card}`
-    return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, { 
-      params: { 
-        key: trelloApiKey, 
-        token: trelloAuthToken 
+    return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, {
+      params: {
+        key: trelloApiKey,
+        token: trelloAuthToken
       }
     }).then(response => {
       return response.data.id;
@@ -8763,126 +8875,52 @@ async function getCardOnBoard(board, message) {
   return null;
 }
 
-async function getListOnBoard(board, list) {
-  console.log(`getListOnBoard(${board}, ${list})`);
-  let url = `https://trello.com/1/boards/${board}/lists`
-  return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, { 
-    params: { 
-      key: trelloApiKey, 
-      token: trelloAuthToken 
-    }
-  }).then(response => {
-    let result = response.data.find(l => l.closed == false && l.name == list);
-    return result ? result.id : null;
-  }).catch(error => {
-    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-    return null;
-  });
-}
-
-async function addAttachmentToCard(card, link) {
-  console.log(`addAttachmentToCard(${card}, ${link})`);
-  let url = `https://api.trello.com/1/cards/${card}/attachments`;
-  return await axios__WEBPACK_IMPORTED_MODULE_0__.post(url, {
-    key: trelloApiKey,
-    token: trelloAuthToken, 
-    url: link
-  }).then(response => {
-    return response.status == 200;
-  }).catch(error => {
-    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-    return null;
-  });
-}
-
-async function addCommentToCard(card, user, message, link) {
-  console.log(`addCommentToCard(${card}, ${user}, ${message}, ${link})`);
-  let url = `https://api.trello.com/1/cards/${card}/actions/comments`;
-  return await axios__WEBPACK_IMPORTED_MODULE_0__.post(url, {
-    key: trelloApiKey,
-    token: trelloAuthToken, 
-    text: `${user}: ${message} ${link}`
-  }).then(response => {
-    return response.status == 200;
-  }).catch(error => {
-    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-    return null;
-  });
-}
-
-async function moveCardToList(board, card, list) {
-  console.log(`moveCardToList(${board}, ${card}, ${list})`);
-  let listId = await getListOnBoard(board, list);
-  if (listId && listId.length > 0) {
-    let url = `https://api.trello.com/1/cards/${card}`;
-    return await axios__WEBPACK_IMPORTED_MODULE_0__.put(url, {
-      key: trelloApiKey,
-      token: trelloAuthToken, 
-      idList: listId
-    }).then(response => {
-      return response && response.status == 200;
-    }).catch(error => {
-      console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-      return null;
-    });
-  }       
-  return null;
-}
-
-async function handleHeadCommit(data) {
-  console.log("handleHeadCommit", data);
-  let url = data.url;
-  let message = data.message;
-  let user = data.author.name;
-  let card = await getCardOnBoard(trelloBoardId, message);
-  if (card && card.length > 0) {
-    if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment') {
-      await addAttachmentToCard(card, url);
-    }
-    else if (trelloCardAction && trelloCardAction.toLowerCase() == 'comment') {
-      await addCommentToCard(card, user, message, url);
-    }
-    if (message.match(regexPullRequest) && trelloListNamePullRequestClosed && trelloListNamePullRequestClosed.length > 0) {
-      await moveCardToList(trelloBoardId, card, trelloListNamePullRequestClosed);
-    }
-    else if (trelloListNameCommit && trelloListNameCommit.length > 0) {
-      await moveCardToList(trelloBoardId, card, trelloListNameCommit);
-    }
-  }
-}
-
 async function handlePullRequest(data) {
   console.log("handlePullRequest", data);
+  // GITHUB
+  // URL to the PR
   let url = data.html_url || data.url;
+  // title of the PR
   let message = data.title;
-  let user = data.user.name;
+
+  // TRELLO
+  // trello card number (not the shortID)
   let card = await getCardOnBoard(trelloBoardId, message);
+
+  // let user = data.user.name;
   if (card && card.length > 0) {
     if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment') {
-      await addAttachmentToCard(card, url);
+      // checks for duplicate
+      if (await isPullRequestAttachedToCard(card, url)) {
+        return await attachPullRequestToCard(card, url)
+      }
     }
-    else if (trelloCardAction && trelloCardAction.toLowerCase() == 'comment') {
-      await addCommentToCard(card, user, message, url);
-    }
-    if (data.state == "open" && trelloListNamePullRequestOpen && trelloListNamePullRequestOpen.length > 0) {
-      await moveCardToList(trelloBoardId, card, trelloListNamePullRequestOpen);
-    }
-    else if (data.state == "closed" && trelloListNamePullRequestClosed && trelloListNamePullRequestClosed.length > 0) {
-      await moveCardToList(trelloBoardId, card, trelloListNamePullRequestClosed);
-    }
+    // else if (trelloCardAction && trelloCardAction.toLowerCase() == 'comment') {
+    //   await addCommentToCard(card, user, message, url);
+    // }
+    // if (data.state == "open" && trelloListNamePullRequestOpen && trelloListNamePullRequestOpen.length > 0) {
+    //   await moveCardToList(trelloBoardId, card, trelloListNamePullRequestOpen);
+    // }
+    // else if (data.state == "closed" && trelloListNamePullRequestClosed && trelloListNamePullRequestClosed.length > 0) {
+    //   await moveCardToList(trelloBoardId, card, trelloListNamePullRequestClosed);
+    // }
   }
 }
 
 async function run() {
-  if (head_commit && head_commit.message) {
-    handleHeadCommit(head_commit)
-  }
-  else if (pull_request && pull_request.title) {
+  // if (head_commit && head_commit.message) {
+  //   handleHeadCommit(head_commit)
+  // }
+  // else if (pull_request && pull_request.title) {
+  //   handlePullRequest(pull_request)
+  // }
+  if (pull_request && pull_request.title) {
     handlePullRequest(pull_request)
   }
 };
 
 run()
+
 })();
 
 module.exports = __webpack_exports__;
