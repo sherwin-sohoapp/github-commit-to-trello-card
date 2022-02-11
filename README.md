@@ -8,10 +8,7 @@
 - **trello-api-key** - Trello API key, visit https://trello.com/app-key for key
 - **trello-auth-token** - Trello auth token, visit https://trello.com/app-key then click generate a token
 - **trello-board-id** - Trello board ID, visit a board then append .json to url to find id
-- **trello-card-action** - Trello card action, either "Comment" or "Attachment"
-- **trello-list-name-commit** - Trello list name for new commit, for example "Doing", "In Progress", etc
-- **trello-list-name-pr-open** - Trello list name for open pull request, for example "Reviewing", "In Review", etc
-- **trello-list-name-pr-closed** - Trello list name for closed pull request, for example "Testing", "Done", etc
+- **trello-card-action** - Trello card action "Attachment PR" (more to come)
 
 #### Git Commit
 ```
@@ -22,9 +19,9 @@ git push
 
 #### GitHub Action
 ```
-name: GitHub Commit To Trello Comment
+name: GitHub To Trello Comment
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -39,10 +36,7 @@ jobs:
           trello-auth-token: ${{ secrets.TRELLO_TOKEN }}
           trello-board-id: ${{ secrets.TRELLO_BOARD }}
           trello-card-action: "Attachment"
-          trello-list-name-commit: "Doing"
-          trello-list-name-pr-open: "Reviewing"
-          trello-list-name-pr-closed: "Testing"
-```          
+```
 
 #### Local Build
 ```

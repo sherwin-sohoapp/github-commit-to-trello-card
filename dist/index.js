@@ -8733,26 +8733,6 @@ const trelloApiKey = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello
 const trelloAuthToken = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-auth-token', { required: true });
 const trelloBoardId = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-board-id', { required: true });
 const trelloCardAction = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-card-action', { required: true });
-// const trelloListNameCommit = core.getInput('trello-list-name-commit', { required: true });
-// const trelloListNamePullRequestOpen = core.getInput('trello-list-name-pr-open', { required: false });
-// const trelloListNamePullRequestClosed = core.getInput('trello-list-name-pr-closed', { required: false });
-
-// async function getListOnBoard(board, list) {
-//   console.log(`getListOnBoard(${board}, ${list})`);
-//   let url = `https://trello.com/1/boards/${board}/lists`
-//   return await axios.get(url, {
-//     params: {
-//       key: trelloApiKey,
-//       token: trelloAuthToken
-//     }
-//   }).then(response => {
-//     let result = response.data.find(l => l.closed == false && l.name == list);
-//     return result ? result.id : null;
-//   }).catch(error => {
-//     console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-//     return null;
-//   });
-// }
 
 async function isPullRequestAttachedToCard(card, link) {
   console.log(`isPullRequestAttachedToCard(${card}, ${link})`);
@@ -8843,6 +8823,24 @@ async function attachPullRequestToCard(card, link) {
 //   }
 // }
 
+// async function getListOnBoard(board, list) {
+//   console.log(`getListOnBoard(${board}, ${list})`);
+//   let url = `https://trello.com/1/boards/${board}/lists`
+//   return await axios.get(url, {
+//     params: {
+//       key: trelloApiKey,
+//       token: trelloAuthToken
+//     }
+//   }).then(response => {
+//     let result = response.data.find(l => l.closed == false && l.name == list);
+//     return result ? result.id : null;
+//   }).catch(error => {
+//     console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+//     return null;
+//   });
+// }
+
+
 // ESSENTIAL METHODS
 // parses the card number from the message
 function getCardNumber(message) {
@@ -8889,12 +8887,16 @@ async function handlePullRequest(data) {
 
   // let user = data.user.name;
   if (card && card.length > 0) {
-    if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment') {
-      // checks for duplicate
+    // When we want to attach
+    if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment pr') {
+
+      // checks for duplicate attachment of URL
       if (await isPullRequestAttachedToCard(card, url)) {
+        // attaches the URL to the card
         return await attachPullRequestToCard(card, url)
       }
     }
+
     // else if (trelloCardAction && trelloCardAction.toLowerCase() == 'comment') {
     //   await addCommentToCard(card, user, message, url);
     // }
@@ -8908,15 +8910,15 @@ async function handlePullRequest(data) {
 }
 
 async function run() {
-  // if (head_commit && head_commit.message) {
-  //   handleHeadCommit(head_commit)
-  // }
-  // else if (pull_request && pull_request.title) {
-  //   handlePullRequest(pull_request)
-  // }
+  // when PR there is change in PR
   if (pull_request && pull_request.title) {
     handlePullRequest(pull_request)
   }
+
+  // when there is a commit change
+  // if (head_commit && head_commit.message) {
+  //   handleHeadCommit(head_commit)
+  // }
 };
 
 run()
