@@ -8,7 +8,8 @@
 - **trello-api-key** - Trello API key, visit https://trello.com/app-key for key
 - **trello-auth-token** - Trello auth token, visit https://trello.com/app-key then click generate a token
 - **trello-board-id** - Trello board ID, visit a board then append .json to url to find id
-- **trello-card-action** - Trello card action "Attachment PR" (more to come)
+- **trello-card-action** - Trello card action i.e. "Attach PR", "PR merged" (more to come)
+- **trello-list-name** - Trello list name for card destination e.g. "Ready to Deploy"
 
 #### Git Commit
 ```

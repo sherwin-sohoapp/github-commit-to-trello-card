@@ -8733,6 +8733,7 @@ const trelloApiKey = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello
 const trelloAuthToken = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-auth-token', { required: true });
 const trelloBoardId = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-board-id', { required: true });
 const trelloCardAction = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-card-action', { required: true });
+const trelloListName = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput('trello-list-name', { required: false });
 
 async function isPullRequestAttachedToCard(card, link) {
   console.log(`isPullRequestAttachedToCard(${card}, ${link})`);
@@ -8767,6 +8768,25 @@ async function attachPullRequestToCard(card, link) {
   });
 }
 
+async function moveCardToList(card) {
+  console.log(`moveCardToList(${card})`);
+  let listId = await getListOnBoard();
+  if (listId && listId.length > 0) {
+    let url = `https://api.trello.com/1/cards/${card}`;
+    return await axios__WEBPACK_IMPORTED_MODULE_0__.put(url, {
+      key: trelloApiKey,
+      token: trelloAuthToken,
+      idList: listId
+    }).then(response => {
+      return response && response.status == 200;
+    }).catch(error => {
+      console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+      return null;
+    });
+  }
+  return null;
+}
+
 // async function addCommentToCard(card, user, message, link) {
 //   console.log(`addCommentToCard(${card}, ${user}, ${message}, ${link})`);
 //   let url = `https://api.trello.com/1/cards/${card}/actions/comments`;
@@ -8782,24 +8802,6 @@ async function attachPullRequestToCard(card, link) {
 //   });
 // }
 
-// async function moveCardToList(board, card, list) {
-//   console.log(`moveCardToList(${board}, ${card}, ${list})`);
-//   let listId = await getListOnBoard(board, list);
-//   if (listId && listId.length > 0) {
-//     let url = `https://api.trello.com/1/cards/${card}`;
-//     return await axios.put(url, {
-//       key: trelloApiKey,
-//       token: trelloAuthToken,
-//       idList: listId
-//     }).then(response => {
-//       return response && response.status == 200;
-//     }).catch(error => {
-//       console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-//       return null;
-//     });
-//   }
-//   return null;
-// }
 
 // async function handleHeadCommit(data) {
 //   console.log("handleHeadCommit", data);
@@ -8823,25 +8825,29 @@ async function attachPullRequestToCard(card, link) {
 //   }
 // }
 
-// async function getListOnBoard(board, list) {
-//   console.log(`getListOnBoard(${board}, ${list})`);
-//   let url = `https://trello.com/1/boards/${board}/lists`
-//   return await axios.get(url, {
-//     params: {
-//       key: trelloApiKey,
-//       token: trelloAuthToken
-//     }
-//   }).then(response => {
-//     let result = response.data.find(l => l.closed == false && l.name == list);
-//     return result ? result.id : null;
-//   }).catch(error => {
-//     console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
-//     return null;
-//   });
-// }
-
-
+// #################
 // ESSENTIAL METHODS
+// #################
+
+// fetches ListID with the given list name
+async function getListOnBoard() {
+  console.log(`getListOnBoard(${trelloBoardId}, ${trelloListName})`);
+  let url = `https://trello.com/1/boards/${trelloBoardId}/lists`
+  return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, {
+    params: {
+      key: trelloApiKey,
+      token: trelloAuthToken
+    }
+  }).then(response => {
+    let result = response.data.find(l => l.closed == false && l.name == trelloListName);
+    return result ? result.id : null;
+  }).catch(error => {
+    console.error(url, `Error ${error.response.status} ${error.response.statusText}`);
+    return null;
+  });
+}
+
+
 // parses the card number from the message
 function getCardNumber(message) {
   console.log(`getCardNumber(${message})`);
@@ -8852,12 +8858,12 @@ function getCardNumber(message) {
 // fetches the card on the board
 // shortID is not the same as the card number used in the API
 // it requires fetching the card number
-async function getCardOnBoard(board, message) {
-  console.log(`getCardOnBoard(${board}, ${message})`);
+async function getCardOnBoard(message) {
+  console.log(`getCardOnBoard(${trelloBoardId}, ${message})`);
   let card = getCardNumber(message);
 
   if (card && card.length > 0) {
-    let url = `https://trello.com/1/boards/${board}/cards/${card}`
+    let url = `https://trello.com/1/boards/${trelloBoardId}/cards/${card}`
     return await axios__WEBPACK_IMPORTED_MODULE_0__.get(url, {
       params: {
         key: trelloApiKey,
@@ -8883,17 +8889,23 @@ async function handlePullRequest(data) {
 
   // TRELLO
   // trello card number (not the shortID)
-  let card = await getCardOnBoard(trelloBoardId, message);
+  let card = await getCardOnBoard(message);
 
   // let user = data.user.name;
   if (card && card.length > 0) {
     // When we want to attach
-    if (trelloCardAction && trelloCardAction.toLowerCase() == 'attachment pr') {
+    if (trelloCardAction.toLowerCase() == 'attach pr') {
 
       // checks for duplicate attachment of URL
       if (await isPullRequestAttachedToCard(card, url)) {
         // attaches the URL to the card
         return await attachPullRequestToCard(card, url)
+      }
+    }
+
+    if (trelloCardAction.toLowerCase() == 'pr merged') {
+      if (data.merged === true) {
+        return await moveCardToList(card);
       }
     }
 

@@ -15,8 +15,11 @@ inputs:
     description: Trello board ID, visit a board then append .json to url to find id
     required: true
   trello-card-action:
-    description: Trello card action. "Attachment PR"
+    description: Trello card action i.e. "Attach PR", "PR merged"
     required: true
+  trello-list-name:
+    description: Trello list name for card designation e.g. "Ready to Deploy"
+    required: false
 runs:
   using: node12
   main: dist/index.js
